@@ -1,0 +1,19 @@
+﻿The **Single Responsibility Principle (SRP)** is a core concept in software design. In simple words, 
+it means that a class or module should have **only one job** or **one reason to change**.
+
+Using your example:
+
+Your `UserManager` class has two jobs:
+1.  `AddUser()`: Its job is to manage users, like adding them to a database.
+2.  `CreateTxtFile()`: Its job is to handle file operations, like writing to a text file.
+
+These are two completely separate responsibilities. The `UserManager` class would have to change if the way you add a user changes, 
+and it would *also* have to change if the way you create a text file changes. This violates the SRP.
+
+To fix this, you would **split the responsibilities** into two different classes:
+
+* A `UserManager` class that only contains the `AddUser()` method. Its only job is to handle users.
+* A separate `TextFileWriter` or `FileManager` class that contains the `CreateTxtFile()` method. Its only job is to handle files.
+
+By separating the code like this, each class has a single, clear purpose, making your program much easier to understand, maintain, and test.
+It's like having a dedicated chef for cooking and a dedicated cleaner for washing dishes, instead of one person trying to do both.
